@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) { //A vector of numbers and target value passed to the function
+        vector<int> check(nums.size(),0); //1 number can be considered only once, hence a check vector to check the same
+        vector<int> ans; //vector to store the answer that we return
+        for(int i=0;i<nums.size();i++)
+        {
+            if(check[i]==1) //checking if that number is used or not
+                continue; //if used we skip this iteration
+            for(int j=i+1;j<nums.size();j++) //we enter this loop, means this number in vector is unused so far in the answer. Also i+1, because we are an element with the elements after it in the vector
+                if(nums[i]+nums[j]==target) //checking if any pair sums up to the target
+                {
+                    check[i]=1; //this pair sums up to the target, hence mark them checked
+                    check[j]=1;
+                    ans.push_back(i); push the indices of the numbers
+                    ans.push_back(j);
+                }
+                
+        }
+    
+      return ans;
+    }
+};
