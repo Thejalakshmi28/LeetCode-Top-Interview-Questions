@@ -1,0 +1,65 @@
+class Solution {
+public:
+    int romanToInt(string s) { //string with roman numerals given
+        int ans=0; //variable to store answer
+        for(int i=0;i<s.size();i++) //loop to traverse through each character
+        {
+            if(s[i]=='I') //lets count exceptions with later symbol, if IV, lets consider it four when we encounter V
+            {
+                if(s[i+1]=='V' || s[i+1]=='X') //checking if its part of 4 or 9
+                    continue;
+                else //when its 1
+                     ++ans;
+            }
+            if(s[i]=='V')
+            {
+                if(i!=0 && s[i-1]=='I') //checking if its part of 4
+                    ans=ans+4;
+                else
+                     ans=ans+5;
+            }
+            if(s[i]=='X')
+            {
+                if(s[i+1]=='L' || s[i+1]=='C') //checking if 40 or 90, if yes ignore
+                    continue;
+                else if(i!=0 && s[i-1]=='I') //checking if 9, if yes act
+                    ans=ans+9;
+                else
+                     ans=ans+10;
+            }
+            if(s[i]=='L')
+            {
+               if(i!=0 && s[i-1]=='X') //checking if 40 , if yes act
+                    ans=ans+40;
+                else
+                     ans=ans+50;
+            }
+            if(s[i]=='C')
+            {
+                if(s[i+1]=='D' || s[i+1]=='M') //checking if 400 or 900, if yes ignore
+                    continue;
+              else if(i!=0 && s[i-1]=='X') //checking  90, if yes act
+                    ans=ans+90;
+                else
+                     ans=ans+100;
+            }
+            if(s[i]=='D')
+            {
+                if(i!=0 && s[i-1]=='C') //checking if 400, if yes act
+                    ans=ans+400;
+                else
+                     ans=ans+500;
+            }
+            if(s[i]=='M')
+            {
+               if(i!=0 && s[i-1]=='C') //checking if 900, if yes act
+                    ans=ans+900;
+                else
+                     ans=ans+1000;
+            }
+       
+                
+        }
+        return ans;
+    }
+};
