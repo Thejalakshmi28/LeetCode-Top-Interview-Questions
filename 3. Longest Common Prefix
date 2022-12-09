@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs){ //there are a number of words in this vector of strings
+        int n =strs.size(); //finding number of words or elements in the vector 
+        string ans; 
+        sort(strs.begin(), strs.end()); //the given vector is sorted according to the alphabet, first word least size
+        string a = strs[0]; //first word, alphabetically first
+        string b = strs[n-1]; //word that is most different from first word
+        for(int i =0; i< a.size(); i++){ //we want to compare the two most different words
+            if(a[i] == b[i]){ //if they are same, the middle words are also same by default
+                ans += a[i]; //add those characters to answer
+            }else break;
+        }
+        return ans;
+    }
+};
