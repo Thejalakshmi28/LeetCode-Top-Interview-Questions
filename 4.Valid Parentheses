@@ -1,0 +1,23 @@
+class Solution {
+public:
+bool isValid(string s) { 
+       stack<char> stk; /*we use stack to push the opening brackets so that when a closing bracket is seen, its 
+                            corresponding open bracket must be on top of stack. Else its not valid*/
+    for(const auto& c : s){ /*const auto&: auto means auto detection of the type of data. & mean reference .
+                            const is there to make sure that object referred to is not modified and is only read by the reference*/
+        switch(c){
+            case '{':  stk.push('}'); break; //in case of opening brackets, we push them into stack
+            case '[':  stk.push(']'); break;
+            case '(':  stk.push(')'); break;
+            default: //any other symbol other than opening brackets
+                if(stk.size() == 0 || c != stk.top()) 
+                       return false;                 /*if the stack is empty,i.e., there r no more opening brackets
+                                                      or if the closing bracket doesnt match opening, then return false. 
+                                                      if one of these become true, then its false*/
+                else stk.pop(); //above two r false, means we got matching parenthesis. so pop it
+        }
+    }
+    return stk.empty();
+
+}
+};
